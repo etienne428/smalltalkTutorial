@@ -43,11 +43,21 @@ LearnSmalltalk >> next [
 ]
 
 { #category : #accessing }
+LearnSmalltalk >> showNewLesson [
+
+	| lessonTitle lessonText |
+	lessonTitle := student currentLesson.
+	lessonText := SmalltalkLesson nextLesson: lessonTitle.
+	^ self viewLesson showLesson: lessonText withTitle: lessonTitle 
+]
+
+{ #category : #accessing }
 LearnSmalltalk >> start [ 
 	"Initialise window. Called from LearnSmalltalk>>next"
 	
 	self viewLesson start.
-	^ self 
+	^ self showNewLesson .
+	 
 ]
 
 { #category : #accessing }
@@ -60,11 +70,4 @@ LearnSmalltalk >> student [
 LearnSmalltalk >> viewLesson [
 
 	^ view ifNil: [ view := ViewLesson new]
-]
-
-{ #category : #'morphic ui' }
-LearnSmalltalk >> window [ 
-	"Build a new window if Nil. Called from LearnSmalltalk>>start"
-	
-	^ SystemWindow labelled: 'PrStef lesson'.
 ]

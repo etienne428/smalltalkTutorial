@@ -10,7 +10,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'window',
-		'shoutMorph'
+		'shoutMorph',
+		'sourceTextModel'
 	],
 	#classVars : [
 		'Instance'
@@ -34,26 +35,37 @@ ViewLesson >> buildText [
 	^ scrolledText
 ]
 
+{ #category : #'morphic ui' }
+ViewLesson >> buildWindow [ 
+
+	^ window := SystemWindow labelled: 'Learn Smalltalk'
+]
+
 { #category : #accessing }
 ViewLesson >> shoutMorph [ 
 
 	^ shoutMorph 
 ]
 
+{ #category : #gui }
+ViewLesson >> showLesson: aLesson  withTitle: aTitle [
+
+	self buildWindow setLabel: 'Lesson number ', aTitle.
+	self sourceTextModel setText: aLesson lesson
+]
+
+{ #category : #accessing }
+ViewLesson >> sourceTextModel [
+	^ sourceTextModel ifNil: [ sourceTextModel := RubScrolledTextModel new interactionModel: self ].
+]
+
 { #category : #accessing }
 ViewLesson >> start [ 
 	"Initialise window. Called from LearnSmalltalk>>next"
 	
+	window := self buildWindow.
 	shoutMorph := self buildText.
-	self window addMorph: shoutMorph frame: (0 @ 0 corner: 1 @ 1).
-	self window openInWorld.
+	window addMorph: shoutMorph frame: (0 @ 0 corner: 1 @ 1).
+	window openInWorld.
 	^ self 
-]
-
-{ #category : #'morphic ui' }
-ViewLesson >> window [ 
-	"This method is a copy of ProfStef>>LessonView>>buildWindow"
-	"Build a new window if Nil. Called from LearnSmalltalk>>start"
-	
-	^ window ifNil: [window := SystemWindow labelled: 'PrStef lesson'].
 ]

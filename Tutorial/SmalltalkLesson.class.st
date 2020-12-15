@@ -31,5 +31,5 @@ SmalltalkLesson class >> nextLesson: anInteger [
 
 	| nameOfLesson |
 	nameOfLesson := self listOfLessons at: anInteger.
-	^ self perform: nameOfLesson  .
+	^ self perform: nameOfLesson.
 ]

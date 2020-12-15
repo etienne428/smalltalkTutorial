@@ -18,6 +18,6 @@ Class {
 { #category : #accessing }
 Student >> currentLesson [ 
 
-	currentLesson ifNil: [ ^ 0 . ] 
+	currentLesson ifNil: [ ^ 1 . ] 
 					ifNotNil: [ ^ currentLesson + 1 ].
 ]
