@@ -21,13 +21,6 @@ Class {
 	#category : #Tutorial
 }
 
-{ #category : #accessing }
-ViewLesson class >> start [ 
-
-	Instance ifNil: [ Instance := self class new.].
-	^ Instance start
-]
-
 { #category : #gui }
 ViewLesson >> buildText [
 "This method is a copy of ProfStef>>LessonView>>buildText"
@@ -41,20 +34,26 @@ ViewLesson >> buildText [
 	^ scrolledText
 ]
 
-{ #category : #'morphic ui' }
-ViewLesson >> buildWindow [ 
-	"This method is a copy of ProfStef>>LessonView>>buildWindow"
-	"Build a new window if Nil. Called from LearnSmalltalk>>start"
-	
-	^ SystemWindow labelled: 'PrStef lesson'.
+{ #category : #accessing }
+ViewLesson >> shoutMorph [ 
+
+	^ shoutMorph 
 ]
 
 { #category : #accessing }
 ViewLesson >> start [ 
 	"Initialise window. Called from LearnSmalltalk>>next"
 	
-	window ifNil: self buildWindow.
 	shoutMorph := self buildText.
-	window addMorph: shoutMorph frame: (0 @ 0 corner: 1 @ 1).
+	self window addMorph: shoutMorph frame: (0 @ 0 corner: 1 @ 1).
+	self window openInWorld.
 	^ self 
+]
+
+{ #category : #'morphic ui' }
+ViewLesson >> window [ 
+	"This method is a copy of ProfStef>>LessonView>>buildWindow"
+	"Build a new window if Nil. Called from LearnSmalltalk>>start"
+	
+	^ window ifNil: [window := SystemWindow labelled: 'PrStef lesson'].
 ]
