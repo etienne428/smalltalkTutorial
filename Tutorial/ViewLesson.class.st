@@ -13,12 +13,6 @@ Class {
 		'shoutMorph',
 		'sourceTextModel'
 	],
-	#classVars : [
-		'Instance'
-	],
-	#classInstVars : [
-		'Instance'
-	],
 	#category : #Tutorial
 }
 
@@ -41,6 +35,12 @@ ViewLesson >> buildWindow [
 	^ window := SystemWindow labelled: 'Learn Smalltalk'
 ]
 
+{ #category : #'instance creation' }
+ViewLesson >> close [ 
+
+	window delete
+]
+
 { #category : #accessing }
 ViewLesson >> doItContext [ 
 	^ nil
@@ -50,6 +50,20 @@ ViewLesson >> doItContext [
 ViewLesson >> doItReceiver [ 
 
 	^ nil
+]
+
+{ #category : #'instance creation' }
+ViewLesson >> hasBindingThatBeginsWith: aString [
+	"This method is a copy of LessonView>>hasBindingThatBeginsWith:"
+	"this method should not be defined here, normally when the interaction model of the RubScrolledTextModel is set to nil the hasBindingThatBeginsWith: message is not sent. Check method RubScrolledTextModel hasBindingThatBeginsWith:. Now if we remove this method, we get an error with RubScrolledTextModel  which has a LessonView as interaction model. I have no idea where it is set."
+
+	^ false
+]
+
+{ #category : #'instance creation' }
+ViewLesson >> open [ 
+
+	window openInWorld 
 ]
 
 { #category : #accessing }

@@ -13,9 +13,6 @@ Class {
 	#classVars : [
 		'Instance'
 	],
-	#classInstVars : [
-		'lesson'
-	],
 	#category : #Tutorial
 }
 
@@ -31,6 +28,11 @@ LearnSmalltalk class >> next [
 ]
 
 { #category : #accessing }
+LearnSmalltalk class >> previous [ 
+	^ self default previous.
+]
+
+{ #category : #accessing }
 LearnSmalltalk class >> start [ 
 
 	^ self default start.
@@ -39,8 +41,15 @@ LearnSmalltalk class >> start [
 { #category : #accessing }
 LearnSmalltalk >> next [
 
-	SmalltalkLesson nextLesson: (self student currentLesson).
-	self viewLesson update.
+	self student incrementLesson.
+	self showNewLesson .
+]
+
+{ #category : #accessing }
+LearnSmalltalk >> previous [
+
+	self student decrementLesson.
+	self showNewLesson .
 ]
 
 { #category : #accessing }
@@ -56,7 +65,9 @@ LearnSmalltalk >> showNewLesson [
 LearnSmalltalk >> start [ 
 	"Initialise window. Called from LearnSmalltalk>>next"
 	
+	view := ViewLesson new.
 	self viewLesson start.
+	student := Student new.
 	self student newTutorial.
 	^ self showNewLesson .
 	 
@@ -65,11 +76,11 @@ LearnSmalltalk >> start [
 { #category : #accessing }
 LearnSmalltalk >> student [
 
-	^ student ifNil: [ student := Student new ]
+	^ student
 ]
 
 { #category : #accessing }
 LearnSmalltalk >> viewLesson [
 
-	^ view ifNil: [ view := ViewLesson new]
+	^ view
 ]

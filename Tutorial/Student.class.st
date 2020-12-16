@@ -7,10 +7,7 @@ Class {
 	#name : #Student,
 	#superclass : #Object,
 	#instVars : [
-		'currentLesson'
-	],
-	#classVars : [
-		'Instance'
+		'currentLessonNumber'
 	],
 	#category : #Tutorial
 }
@@ -18,26 +15,27 @@ Class {
 { #category : #accessing }
 Student >> currentLesson [ 
 
-	currentLesson ifNil: [ ^ 1 . ] 
-					ifNotNil: [ ^ currentLesson + 1 ].
+	^ currentLessonNumber
 ]
 
 { #category : #accessing }
 Student >> decrementLesson [
 
-	^ currentLesson = 1 ifTrue: [ currentLesson := 1. ] ifFalse: [ currentLesson := currentLesson - 1. ]
+	^ currentLessonNumber = 1 ifTrue: [ currentLessonNumber := 1. ] 
+		ifFalse: [ currentLessonNumber := currentLessonNumber - 1. ]
 	
 ]
 
 { #category : #accessing }
 Student >> incrementLesson [
 
-	currentLesson ifNil: [ currentLesson := 1. ].
-	^ currentLesson := currentLesson + 1.
+	currentLessonNumber ifNil: [ currentLessonNumber := 1. ].
+	currentLessonNumber = SmalltalkLesson listOfLessons size ifTrue: [^ currentLessonNumber .].
+	^ currentLessonNumber := currentLessonNumber + 1.
 ]
 
 { #category : #accessing }
 Student >> newTutorial [
 
-	^ currentLesson := 0
+	^ currentLessonNumber := 1
 ]
