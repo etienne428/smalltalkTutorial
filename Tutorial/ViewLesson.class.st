@@ -42,6 +42,17 @@ ViewLesson >> buildWindow [
 ]
 
 { #category : #accessing }
+ViewLesson >> doItContext [ 
+	^ nil
+]
+
+{ #category : #accessing }
+ViewLesson >> doItReceiver [ 
+
+	^ nil
+]
+
+{ #category : #accessing }
 ViewLesson >> shoutMorph [ 
 
 	^ shoutMorph 
@@ -50,8 +61,8 @@ ViewLesson >> shoutMorph [
 { #category : #gui }
 ViewLesson >> showLesson: aLesson  withTitle: aTitle [
 
-	self buildWindow setLabel: 'Lesson number ', aTitle.
-	self sourceTextModel setText: aLesson lesson
+	self buildWindow setLabel: 'Lesson number ', aTitle asString.
+	self sourceTextModel setText: aLesson 
 ]
 
 { #category : #accessing }
@@ -63,7 +74,7 @@ ViewLesson >> sourceTextModel [
 ViewLesson >> start [ 
 	"Initialise window. Called from LearnSmalltalk>>next"
 	
-	window := self buildWindow.
+	window ifNil: [window := self buildWindow.].
 	shoutMorph := self buildText.
 	window addMorph: shoutMorph frame: (0 @ 0 corner: 1 @ 1).
 	window openInWorld.

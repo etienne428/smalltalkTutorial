@@ -32,6 +32,7 @@ LearnSmalltalk class >> next [
 
 { #category : #accessing }
 LearnSmalltalk class >> start [ 
+
 	^ self default start.
 ]
 

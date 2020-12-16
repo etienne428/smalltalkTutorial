@@ -13,7 +13,19 @@ Class {
 
 { #category : #lessons }
 SmalltalkLesson class >> lesson01 [ 
-	^ '"Congratulations! You reached the first lesson of this Smalltalk tutorial! "'
+	^ '"Congratulations! You reached the first lesson of this Smalltalk tutorial! 
+First, we have to get to know a bit of Pharo, this dialect, and how to get some code running. To execute a line of code, you can right-click on its line and select Do-It on the menu. Let''s try it:"
+
+Transcript open.
+
+"Another way to do it is to press Ctrl + D (Cmd + D) when the cursor is on that line."
+
+Transcript show: ''Hello World!''.
+
+"You can do the same to go to the next lesson:"
+
+LearnSmalltalk next.'
+	"To start, you have to know that in Smalltalk, everything is an object. Each operation is just a message sent to an object."
 ]
 
 { #category : #lessons }
