@@ -53,11 +53,11 @@ Smalltalk code is composed of 2 (or 3) things : objects, messages and (sometimes
 
 3 isPrime.
 
-100000 factorial.
+10000 factorial.
 
 Bag isNil.
 
-"When you execute this code, the message (isOdd, factorial, isNil) is sent to the object (3, 100000, Bag) which evaluates it. The dot at the end of the line means ''Do It''. It is not very relevant for now because we execute one line at a time, but you will soon understand how important it can be."
+"When you execute this code, the message (isOdd, factorial, isNil) is sent to the object (3, 10000, Bag) which evaluates it. The dot at the end of the line means ''Do It''. It is not very relevant for now because we execute one line at a time, but you will soon understand how important it can be."
 
 LearnSmalltalk next.'
 ]
@@ -67,7 +67,7 @@ SmalltalkLesson class >> lesson04 [
 
 	^ '"Lesson number 4
 
-Then, we have binary messages. It is special cases (you will understand how in the next lesson) to stay close to what we''re used to. Binary messages can only be one or two characters from this list :
+Then, we have binary messages. Binary messages can only be one or two characters from this list :
 
  + / \ * ~ < > = @ % | & ? ! ,
 
@@ -89,7 +89,7 @@ Of course, one can also have more than one action on each line :"
 20 * 3 + 4.
 3 + 4 * 20.
 
-"The last 2 exemples show one important to remember : messages (of the same kind) are evaluated from left to right. But we''ll talk about that again. What we have to know for now is that we can modify that with parenthesis :"
+"The last 2 exemples show one important thing to remember : messages (of the same kind) are evaluated from left to right. But we''ll talk about that again. What we have to know for now is that we can modify that with parenthesis :"
 
 20 * (3 + 4).
 3 + (4 * 20).
@@ -108,7 +108,7 @@ The last kind of messages are keywords messages. They are easy to recognise, as 
 
 Color r:1 g:1 b:0.
 
-"Messages can now get longer, and span across many lines. That''s when the dot begins to be of importance :"
+"Messages can now get longer, and span across many lines. That''s when the dot begins to be of importance : the message is not sent until a dot is to be found. Otherwise, one would get an error. "
 
 Color r:1 
 		g:0 
@@ -209,6 +209,7 @@ b class.
 
 aString := ''I am a string''.
 aString class.
+
 aString := false.
 aString class.
 
