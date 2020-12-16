@@ -47,7 +47,7 @@ LearnSmalltalk >> next [
 LearnSmalltalk >> showNewLesson [
 
 	| lessonTitle lessonText |
-	lessonTitle := student currentLesson.
+	lessonTitle := self student currentLesson.
 	lessonText := SmalltalkLesson nextLesson: lessonTitle.
 	^ self viewLesson showLesson: lessonText withTitle: lessonTitle 
 ]
@@ -57,6 +57,7 @@ LearnSmalltalk >> start [
 	"Initialise window. Called from LearnSmalltalk>>next"
 	
 	self viewLesson start.
+	self student newTutorial.
 	^ self showNewLesson .
 	 
 ]

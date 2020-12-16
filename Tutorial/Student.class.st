@@ -39,5 +39,5 @@ Student >> incrementLesson [
 { #category : #accessing }
 Student >> newTutorial [
 
-	^ currentLesson := 1
+	^ currentLesson := 0
 ]
