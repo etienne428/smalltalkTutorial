@@ -21,3 +21,23 @@ Student >> currentLesson [
 	currentLesson ifNil: [ ^ 1 . ] 
 					ifNotNil: [ ^ currentLesson + 1 ].
 ]
+
+{ #category : #accessing }
+Student >> decrementLesson [
+
+	^ currentLesson = 1 ifTrue: [ currentLesson := 1. ] ifFalse: [ currentLesson := currentLesson - 1. ]
+	
+]
+
+{ #category : #accessing }
+Student >> incrementLesson [
+
+	currentLesson ifNil: [ currentLesson := 1. ].
+	^ currentLesson := currentLesson + 1.
+]
+
+{ #category : #accessing }
+Student >> newTutorial [
+
+	^ currentLesson := 1
+]
