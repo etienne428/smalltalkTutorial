@@ -60,6 +60,11 @@ ViewLesson >> hasBindingThatBeginsWith: aString [
 	^ false
 ]
 
+{ #category : #gui }
+ViewLesson >> isOpenInWindow [
+	^ self currentWorld systemWindows includes: window
+]
+
 { #category : #'instance creation' }
 ViewLesson >> open [ 
 
@@ -90,8 +95,8 @@ ViewLesson >> shoutMorphFillMenu: aMenu [
 { #category : #gui }
 ViewLesson >> showLesson: aLesson  withTitle: aTitle [
 
-	self buildWindow setLabel: 'Lesson number ', aTitle asString.
-	self sourceTextModel setText: aLesson 
+	self sourceTextModel setText: aLesson.
+	self isOpenInWindow ifFalse: [ self open ]
 ]
 
 { #category : #accessing }
