@@ -34,6 +34,28 @@ SmalltalkLesson class >> lesson02 [
 ]
 
 { #category : #lessons }
+SmalltalkLesson class >> lesson03 [
+
+	^ '"Smalltalk code is composed of 2 to 3 things : an object, a message and (sometimes) an argument. They are separated by a space.
+
+There is 3 kind of messages in Smalltalk. The first ones are unary messages, messages that does not take an argument. For exemple, "
+
+3 isPrime.
+Bag isNil.
+Transcript close.
+
+"When you execute this code, the message (isOdd, isNil, close) is sent to the object (3, Bag, Transcript) which evaluates it. The dot at the end of the line means ''Do It''. It is not very relevant for now because we execute one line at a time, but you will soon understand how important it can be."
+
+LearnSmalltalk next.'
+]
+
+{ #category : #lessons }
+SmalltalkLesson class >> lesson04 [
+
+	^ '"lesson 4"'
+]
+
+{ #category : #lessons }
 SmalltalkLesson class >> listOfLessons [
 ^ #(lesson01 lesson02)
 ]

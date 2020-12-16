@@ -53,9 +53,24 @@ ViewLesson >> doItReceiver [
 ]
 
 { #category : #accessing }
+ViewLesson >> selectedClassOrMetaClass [
+	^ nil
+]
+
+{ #category : #shout }
+ViewLesson >> shoutAboutToStyle: aPluggableShoutMorphOrView [
+	^ true
+]
+
+{ #category : #accessing }
 ViewLesson >> shoutMorph [ 
 
 	^ shoutMorph 
+]
+
+{ #category : #shout }
+ViewLesson >> shoutMorphFillMenu: aMenu [
+	^ aMenu addAllFrom: self menu
 ]
 
 { #category : #gui }
