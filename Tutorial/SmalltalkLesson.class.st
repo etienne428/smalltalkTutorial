@@ -27,7 +27,6 @@ Transcript show: ''Hello World!''.
 "You can do the same to go to the next lesson:"
 
 LearnSmalltalk next.'
-	"To start, you have to know that in Smalltalk, everything is an object. Each operation is just a message sent to an object."
 ]
 
 { #category : #lessons }
@@ -54,9 +53,11 @@ Smalltalk code is composed of 2 (or 3) things : objects, messages and (sometimes
 
 3 isPrime.
 
+100000 factorial.
+
 Bag isNil.
 
-"When you execute this code, the message (isOdd, isNil) is sent to the object (3, Bag) which evaluates it. The dot at the end of the line means ''Do It''. It is not very relevant for now because we execute one line at a time, but you will soon understand how important it can be."
+"When you execute this code, the message (isOdd, factorial, isNil) is sent to the object (3, 100000, Bag) which evaluates it. The dot at the end of the line means ''Do It''. It is not very relevant for now because we execute one line at a time, but you will soon understand how important it can be."
 
 LearnSmalltalk next.'
 ]
@@ -227,6 +228,11 @@ How is the class determined, then? Well, class is just a message sent. The ''cla
 aNonNumber := $s.
 aNonNumber isPrime.
 
+"Another example :"
+
+2 factorial class.
+200 factorial class.
+
 "If an implementation is found, then the code is run. That''s all! "
 
 
@@ -240,13 +246,135 @@ SmalltalkLesson class >> lesson10 [
 
 ^ '"Lesson number 10
 
-Here
+Other useful construct are the Arrays. They are usually created inside of parentheses precedeed by a # :"
+
+#(a b c) at: 1.
+
+"Smalltalk has the (now) particularity to begin counting at one. Because the first element is the element number 1...
+Of course, as they have no static type, an array can contains elements of different types"
+#(true 2 $b #(a 3.5)).
+
+LearnSmalltalk next.'
+]
+
+{ #category : #lessons }
+SmalltalkLesson class >> lesson11 [
+
+^ '"Lesson number 11
+
+But there is another type of arrays. While the first one are evaluated at compile time, those arrays are only evaluated at runtime. The difference seems to be rather small, but it can lead to very different results :"
+
+{ 1+2. Transcript open }.
+
+"Compared to the other :"
+
+#( 1+2. Transcript open ).
+
+"The thing is, the compile time operation transform any unknown object in its symbol value."
+
+LearnSmalltalk perform: (#(next) at: 1).'
+]
+
+{ #category : #lessons }
+SmalltalkLesson class >> lesson12 [
+
+^ '"Lesson number 12
+
+Next, we will see what a block is. One could see a block as an anonymous method. They contain some code that can be perform, and, as any other object, can be assigned. They are defined between square brackets :"
+
+| a b x |
+a := [ x:= 5. ].		"Value of the block is assigned to a but not evaluated, '':='' is not sent to x"
+true ifTrue: a.			"Execute a"
+x.							"x now has value 5."
+
+b := [ :y | y * 3. ].	"b is assigned a block value"
+b value: x.				"b is evaluated, with local variable the value of x (which doesn''t change)"
+x.
+
+b := [ :anOperation | LearnSmalltalk perform: anOperation. ].
+b value: #next.'
+]
+
+{ #category : #lessons }
+SmalltalkLesson class >> lesson13 [
+
+^ '"Lesson number 13
+
+With Arrays and blocks, one can now write code equivalent to for-loops in other programming languages :"
+
+| count loop result |
+count := 5.									"Initialise values"
+result := 1.
+loop := [ result := result * count.	"multiply result with count"
+		count := count - 1 ].				"decrement count"
 
 
+[ count > 0 ] whileTrue: loop.			"Actual loop : run as long as condition is true"
+result.										"Show result when Print It"
 
-LearnSmalltalk next.
+"This is one possible implementation of the factorial of a number. "
+										
 
-'
+LearnSmalltalk next.'
+]
+
+{ #category : #lessons }
+SmalltalkLesson class >> lesson14 [
+
+^ '"Lesson number 14
+
+Last part of this tutorial, let''s create a new class. Smalltalk split the work in different parts. First, let''s create the class :"
+
+Object subclass: #enterYourClassName  "Your class should start with a capital letter"
+	instanceVariableNames: ''''
+	classVariableNames: ''''
+	package: ''Tutorial''.
+
+
+"When your done, select your code and create your class by ''Doing It''! It'' as easy as that!
+
+Now, you can create your methods. For exemple, You can make a method that tells if a given number is greater than 5 :"
+
+enterYourClassName compile: 		"Put your name at the beginning of this line"
+''isGreaterThan5: anInteger                     
+	^ anInteger > 5''					
+classified: ''myFirstMethods''.
+
+"''isgreaterThan5'' is the class name. as it is followed by a column, it takes an argument, with name anInteger. ''^'' is the return symbol. This method returns the following code. myFirstMethod is the category, it is not very relevant, just a way to group methods of a certain class.
+
+Let''s try your own method. Write its name instead of ''useSelfHalt''. It doesn''t necessarily have to return a value. You can create a method that takes an argument or not"
+
+enterYourClassName compile:
+''useSelfHalt
+	XXX
+	^ YYY''
+classified: ''myFirstMethods''.
+
+
+LearnSmalltalk next.'
+]
+
+{ #category : #lessons }
+SmalltalkLesson class >> lesson15 [
+
+^ '"Lesson number 15
+
+Now, you can try your class! First create an instance with new, then run it!"
+
+| myObject |
+myObject := MyClass new.			"Write your class name instead of MyClass"
+myObject isGreaterThan5: 4.
+"Write your method name instead of isGreaterThan5: . Make sure to use the correct arguments!"
+
+
+"That was the last lesson of this Tutorial. Thank you for doing it, I hope you liked it!
+Don''t hesitate to make any comment : you can contact me via github. And share it to your friends!
+https://github.com/etienne428/smalltalkTutorial.
+
+
+You can run it once again by executing this line : "
+
+LearnSmalltalk start.'
 ]
 
 { #category : #lessons }
@@ -260,7 +388,13 @@ SmalltalkLesson class >> listOfLessons [
 	notALesson 
 	lesson07 
 	lesson08 
-	lesson09)
+	lesson09
+	lesson10
+	lesson11
+	lesson12
+	lesson13
+	lesson14
+	lesson15)
 ]
 
 { #category : #control }
